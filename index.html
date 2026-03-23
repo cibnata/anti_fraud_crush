@@ -210,7 +210,7 @@ button:active{transform:scale(.97)}
 .stars{font-size:36px;margin:8px 0;letter-spacing:4px}
 
 @media(max-width:1380px){.app-viewport{display:flex;justify-content:center;padding:12px 10px 28px;overflow-x:hidden}.app{grid-template-columns:minmax(0,620px);max-width:620px;width:min(100%,620px);margin:0 auto;justify-content:center}.panel,.game-shell{width:100%;max-width:620px;margin-left:auto;margin-right:auto}.panel:first-child{order:1}.game-shell{order:2;min-height:auto}.panel:last-child{order:3}.game-legend-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.board-wrap{min-height:auto;display:flex;justify-content:center;align-items:flex-start}.board{margin:0 auto}.overlay{padding:16px 12px;align-items:flex-start}.overlay-card{width:min(100%,420px);max-width:420px;margin:0 auto;max-height:min(78vh,760px)}}
-@media(max-width:680px){body{overflow-x:hidden}.app-viewport{padding:10px 8px 24px}.app{width:100%;max-width:420px;grid-template-columns:minmax(0,1fr);gap:12px}.panel,.game-shell{max-width:420px}.panel-body{overflow:visible}.toolbar{grid-template-columns:repeat(2,1fr)}.game-legend-box{padding:9px 10px}.game-legend-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.legend-item.game-legend-item{height:46px;min-height:0;padding:5px 6px}.legend-item.game-legend-item .mini{width:26px;height:26px;font-size:13px}.legend-item.game-legend-item .legend-name{font-size:10.5px;line-height:1.08}.legend-item.game-legend-item .legend-desc{font-size:8.5px;line-height:1.02}.board-wrap{width:100%;max-width:100%;padding:8px;min-height:auto;display:flex;justify-content:center;align-items:flex-start}.board{width:min(100%,360px);max-width:360px;gap:3px;margin:0 auto}.tile{border-radius:10px}.tile .emoji{font-size:24px}.tile .label{font-size:12px}.overlay{align-items:flex-start;padding:12px 10px}.overlay-card{width:min(100%,360px);max-width:360px;max-height:min(76vh,700px)}.btn-start-cta{min-width:88px;padding:5px 10px;font-size:12px;border-radius:10px}.text-zoom{font-size:32px;padding:10px 24px}}
+@media(max-width:680px){body{overflow-x:hidden}.app-viewport{padding:10px 8px 24px}.app{width:100%;max-width:420px;grid-template-columns:minmax(0,1fr);gap:12px}.panel,.game-shell{max-width:420px;width:100%}.panel-body{overflow:visible}.section-box{width:100%;margin-top:10px}.toolbar{grid-template-columns:repeat(2,1fr)}.game-legend-box{padding:9px 10px}.game-legend-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.legend-item.game-legend-item{height:46px;min-height:0;padding:5px 6px}.legend-item.game-legend-item .mini{width:26px;height:26px;font-size:13px}.legend-item.game-legend-item .legend-name{font-size:10.5px;line-height:1.08}.legend-item.game-legend-item .legend-desc{font-size:8.5px;line-height:1.02}.board-wrap{width:100%;max-width:100%;padding:8px;min-height:auto;display:flex;justify-content:center;align-items:flex-start}.board{width:min(100%,360px);max-width:360px;gap:3px;margin:0 auto}.tile{border-radius:10px}.tile .emoji{font-size:24px}.tile .label{font-size:12px}.overlay{align-items:flex-start;padding:12px 10px}.overlay-card{width:min(100%,360px);max-width:360px;max-height:min(76vh,700px)}.btn-start-cta{min-width:88px;padding:5px 10px;font-size:12px;border-radius:10px}.text-zoom{font-size:32px;padding:10px 24px}}
 
 .pitch-note{margin-top:10px;padding:10px 12px;border-radius:14px;background:linear-gradient(180deg,#fff7eb,#f8efe2);border:1px dashed rgba(185,119,46,.35);font-size:12px;color:var(--muted);line-height:1.7}
 .pitch-note strong{color:var(--text)}
@@ -1011,17 +1011,17 @@ function syncMobilePanelLayout(){
   }
   const boardRect=boardWrap.getBoundingClientRect();
   const targetWidth=Math.max(300, Math.round(boardRect.width));
-  const targetHeight=Math.round(boardRect.height*1.2);
   leftPanel.style.width=`${targetWidth}px`;
   leftPanel.style.maxWidth=`${targetWidth}px`;
-  leftPanel.style.height=`${targetHeight}px`;
-  leftPanel.style.maxHeight=`${targetHeight}px`;
+  leftPanel.style.height='auto';
+  leftPanel.style.maxHeight='none';
   const panelBody=leftPanel.querySelector('.panel-body');
-  if(panelBody) panelBody.style.overflow='auto';
+  if(panelBody) panelBody.style.overflow='visible';
   if(overlayCard){
+    const overlayHeight=Math.max(420, Math.round(boardRect.height*1.2));
     overlayCard.style.width=`${targetWidth}px`;
     overlayCard.style.maxWidth=`${targetWidth}px`;
-    overlayCard.style.maxHeight=`${targetHeight}px`;
+    overlayCard.style.maxHeight=`${overlayHeight}px`;
   }
 }
 window.addEventListener('resize',()=>{fitAppToViewport();syncMobilePanelLayout();});
