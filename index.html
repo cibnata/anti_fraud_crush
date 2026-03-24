@@ -78,13 +78,15 @@ h2{font-size:15px;font-weight:700;color:var(--text)}
 @keyframes levelPulse{0%,100%{width:30%}50%{width:70%}}
 
 /* WEAPON BAR */
-.weapon-bar{margin-bottom:10px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
-.weapon-label{font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:4px}
-.weapon-bear-mini{width:32px;height:32px;border-radius:10px;object-fit:contain;object-position:center 58%;padding:2px;border:2px solid #304456;box-shadow:0 0 0 2px rgba(255,255,255,.7);background:linear-gradient(180deg,#fffaf4,#f5e5c6)}
-.weapon-pips{display:flex;gap:5px;flex:1}
-.weapon-pip{width:28px;height:28px;border-radius:8px;background:var(--card-bg);border:2px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .3s cubic-bezier(.34,1.56,.64,1)}
-.weapon-pip.filled{background:rgba(0,168,84,0.15);border-color:var(--accent);box-shadow:0 0 8px rgba(0,168,84,0.2);transform:scale(1.05)}
-.weapon-btn{background:linear-gradient(135deg,#d49a4f,#b9772e);color:#fff;border:none;border-radius:12px;padding:6px 12px;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap;opacity:.35;pointer-events:none;transition:all .3s;font-family:inherit}
+.weapon-bar{margin-bottom:10px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:9px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.weapon-label{font-size:24px;font-weight:800;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:8px;line-height:1}
+.weapon-bear-mini{width:40px;height:40px;border-radius:12px;object-fit:contain;object-position:center 58%;padding:2px;border:2px solid #304456;box-shadow:0 0 0 2px rgba(255,255,255,.7);background:linear-gradient(180deg,#fffaf4,#f5e5c6)}
+.weapon-pips{display:flex;gap:6px;flex:1}
+.weapon-pip{width:32px;height:32px;border-radius:9px;background:var(--card-bg);border:2px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.weapon-pip.filled{background:rgba(42,123,228,0.22);border-color:#2a7be4;box-shadow:0 0 8px rgba(42,123,228,0.28);transform:scale(1.05);color:#ffd400}
+.weapon-action{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.weapon-bomb-icon{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;line-height:1;background:linear-gradient(135deg,#fff4e7,#ffe2be);border:2px solid rgba(185,119,46,0.28);box-shadow:0 3px 10px rgba(212,154,79,0.14)}
+.weapon-btn{background:linear-gradient(135deg,#d49a4f,#b9772e);color:#fff;border:none;border-radius:12px;padding:8px 14px;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;opacity:.35;pointer-events:none;transition:all .3s;font-family:inherit}
 .weapon-btn.ready{opacity:1;pointer-events:auto;animation:wPulse 1.5s ease-in-out infinite;box-shadow:0 8px 20px rgba(185,119,46,0.28)}
 .weapon-btn.active{background:linear-gradient(135deg,#304456,#1f2f3e);animation:wActive .5s ease-in-out infinite;box-shadow:0 8px 20px rgba(48,68,86,.3)}
 @keyframes wPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
@@ -95,24 +97,27 @@ h2{font-size:15px;font-weight:700;color:var(--text)}
 .board{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:clamp(2px,.55vw,5px);touch-action:none;user-select:none;position:relative;width:min(100%,var(--board-max));max-width:100%;margin-inline:auto;transform:scale(1.04);transform-origin:top center}
 
 .tile{
-  aspect-ratio:1;border-radius:14px;
+  aspect-ratio:1;border-radius:16px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   cursor:grab;
-  border:2px solid rgba(255,255,255,0.55);
-  box-shadow:0 3px 10px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.55);
-  transition:transform .15s,outline .15s,opacity .2s,box-shadow .2s;
+  border:1.5px solid rgba(255,255,255,0.72);
+  box-shadow:0 10px 18px rgba(92,60,34,0.16),0 4px 0 rgba(116,79,45,0.20),inset 0 2px 0 rgba(255,255,255,0.72),inset 0 -7px 10px rgba(80,45,12,0.12);
+  transition:transform .15s,outline .15s,opacity .2s,box-shadow .2s,filter .2s;
   position:relative;overflow:hidden;
   -webkit-user-select:none;user-select:none;
+  filter:saturate(1.03);
 }
-.tile::after{content:'';position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(180deg,rgba(255,255,255,0.25),transparent);pointer-events:none;border-radius:12px 12px 0 0}
-.tile:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.15)}
+.tile::before{content:'';position:absolute;inset:1px 1px auto 1px;height:34%;background:linear-gradient(180deg,rgba(255,255,255,0.42),rgba(255,255,255,0.08) 68%,transparent);pointer-events:none;border-radius:14px 14px 10px 10px}
+.tile::after{content:'';position:absolute;left:10%;right:10%;bottom:8%;height:18%;background:radial-gradient(ellipse at center,rgba(61,42,29,.18),transparent 70%);pointer-events:none;border-radius:999px;opacity:.55}
+.tile:hover{transform:translateY(-3px);box-shadow:0 14px 24px rgba(92,60,34,0.20),0 5px 0 rgba(116,79,45,0.24),inset 0 2px 0 rgba(255,255,255,0.78),inset 0 -8px 12px rgba(80,45,12,0.14)}
+.tile:active{transform:translateY(2px) scale(.985);box-shadow:0 6px 12px rgba(92,60,34,0.18),0 2px 0 rgba(116,79,45,0.20),inset 0 2px 0 rgba(255,255,255,0.65),inset 0 -5px 9px rgba(80,45,12,0.14)}
 .tile.selected{outline:3px solid var(--info);transform:scale(1.06);z-index:2}
 .tile.matching{animation:matchBoom .4s ease-in-out}
 .tile.weapon-target{cursor:crosshair}
 .tile.weapon-target:hover{outline:3px solid var(--accent);box-shadow:0 0 20px rgba(185,119,46,.35)}
 .tile.weapon-blast{animation:blastAnim .5s ease-out forwards}
-.tile.dragging,.tile.touch-dragging{opacity:.55;transform:scale(.92);z-index:3;box-shadow:0 10px 24px rgba(0,0,0,0.18)}
-.tile.drag-over,.tile.touch-drag-over{outline:3px solid var(--info);transform:scale(1.08);box-shadow:0 0 0 3px rgba(107,143,135,.18),0 10px 22px rgba(0,0,0,0.14)}
+.tile.dragging,.tile.touch-dragging{opacity:.72;transform:translateY(-4px) scale(.96) rotate(-1deg);z-index:3;box-shadow:0 18px 32px rgba(61,42,29,0.24),0 7px 0 rgba(116,79,45,0.18),inset 0 2px 0 rgba(255,255,255,.8)}
+.tile.drag-over,.tile.touch-drag-over{outline:3px solid var(--info);transform:translateY(-2px) scale(1.06);box-shadow:0 0 0 3px rgba(107,143,135,.18),0 14px 28px rgba(61,42,29,0.18),0 5px 0 rgba(107,143,135,.15)}
 
  .tile .emoji{font-size:24px;line-height:1;position:relative;z-index:1;text-shadow:-1.5px -1.5px 0 rgba(255,255,255,.96),1.5px -1.5px 0 rgba(255,255,255,.96),-1.5px 1.5px 0 rgba(255,255,255,.96),1.5px 1.5px 0 rgba(255,255,255,.96),0 3px 8px rgba(0,0,0,.18)}
 .tile .label{
@@ -130,33 +135,11 @@ h2{font-size:15px;font-weight:700;color:var(--text)}
 @keyframes blastAnim{0%{transform:scale(1);opacity:1;filter:brightness(1)}30%{transform:scale(1.3);opacity:1;filter:brightness(1.5)}100%{transform:scale(0);opacity:0;filter:brightness(2)}}
 
 /* TEXT ZOOM */
-.text-zoom{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(.5);
-  pointer-events:none;
-  z-index:200;
-  font-size:56px;
-  font-weight:900;
-  opacity:0;
-  animation:textZoomAnim 1.6s cubic-bezier(.22,.68,.36,1) forwards;
-  white-space:nowrap;
-  letter-spacing:3px;
-  padding:14px 36px;
-  border-radius:18px;
-  backdrop-filter:blur(6px);
-  background:rgba(255,255,255,.96);
-}
+.text-zoom{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.5);pointer-events:none;z-index:200;font-size:56px;font-weight:900;opacity:0;animation:textZoomAnim .95s cubic-bezier(.22,.68,.36,1) forwards;white-space:nowrap;letter-spacing:3px;padding:14px 36px;border-radius:18px;backdrop-filter:blur(6px);background:rgba(255,255,255,.96)}
 .text-zoom.danger-text{color:#b91c1c;border:4px solid #fecaca;box-shadow:0 0 40px rgba(220,38,38,.16),0 8px 32px rgba(0,0,0,0.14),inset 0 1px 0 rgba(255,255,255,.85);text-shadow:none}
 .text-zoom.safe-text{color:#8b5a20;border:4px solid #f5d5a2;box-shadow:0 0 40px rgba(185,119,46,.15),0 8px 32px rgba(0,0,0,0.14),inset 0 1px 0 rgba(255,255,255,.85);text-shadow:none}
-@keyframes textZoomAnim{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}
-  15%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}
-  35%{opacity:1;transform:translate(-50%,-50%) scale(.97)}
-  80%{opacity:1;transform:translate(-50%,-50%) scale(1)}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(1.08) translateY(-30px)}
-}
+@keyframes textZoomAnim{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}45%{opacity:1;transform:translate(-50%,-50%) scale(.97)}65%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.08) translateY(-30px)}}
+
 /* OVERLAY */
 .overlay{position:fixed;inset:0;background:rgba(255,250,244,.72);display:none;align-items:center;justify-content:center;text-align:center;padding:24px;backdrop-filter:blur(8px);z-index:1200;flex-direction:column}
 .overlay.show{display:flex}
@@ -239,8 +222,8 @@ button:active{transform:scale(.97)}
 
 .stars{font-size:36px;margin:8px 0;letter-spacing:4px}
 
-@media(max-width:1380px){.app-viewport{display:flex;justify-content:center;padding:12px 10px 28px;overflow-x:hidden}.app{grid-template-columns:minmax(0,1fr);max-width:min(100%,var(--game-panel-max));width:min(100%,var(--game-panel-max));margin:0 auto;justify-content:center}.panel,.game-shell{width:100%;max-width:min(100%,var(--game-panel-max));margin-left:auto;margin-right:auto}.panel:first-child{order:1}.game-shell{order:2;min-height:auto}.panel:last-child{order:3}.game-legend-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.board-wrap{min-height:clamp(420px,76vw,760px);display:flex;justify-content:center;align-items:flex-start}.board{width:min(100%,clamp(380px,90vw,var(--board-max)));transform:scale(1)}.overlay{padding:16px 12px;align-items:flex-start}.overlay-card{width:min(100%,560px);max-width:560px;margin:0 auto;max-height:min(82vh,860px)}.start-overlay-card{width:min(100%,96vw);max-width:1100px;min-height:min(84vh,1180px);max-height:min(96vh,1400px);padding:34px 28px 30px}}
-@media(max-width:680px){body{overflow-x:hidden}.app-viewport{padding:10px 8px 24px}.app{width:100%;max-width:min(100%,420px);grid-template-columns:minmax(0,1fr);gap:12px}.panel,.game-shell{max-width:min(100%,420px);width:100%}.panel-body{overflow:visible}.section-box{width:100%;margin-top:10px}.toolbar{grid-template-columns:repeat(2,1fr)}.game-legend-box{padding:9px 10px}.game-legend-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.legend-item.game-legend-item{height:46px;min-height:0;padding:5px 6px}.legend-item.game-legend-item .mini{width:26px;height:26px;font-size:13px}.legend-item.game-legend-item .legend-name{font-size:10.5px;line-height:1.08}.legend-item.game-legend-item .legend-desc{font-size:8.5px;line-height:1.02}.board-wrap{width:100%;max-width:100%;padding:0;min-height:clamp(300px,84vw,430px);display:flex;justify-content:center;align-items:flex-start;overflow:hidden}.board{width:min(100%,calc(100vw - 30px));max-width:360px;gap:2px;margin:0 auto;transform:scale(.95);transform-origin:top center}.tile{border-radius:10px}.tile .emoji{font-size:18px}.tile .label{font-size:9px;line-height:1.05;letter-spacing:0}.overlay{align-items:flex-start;padding:12px 10px}.overlay-card{width:min(100%,380px);max-width:380px;max-height:min(80vh,760px)}.start-overlay-card{width:min(100%,98vw);max-width:640px;min-height:min(84vh,980px);max-height:min(96vh,1160px);padding:26px 18px 26px}.btn-start-cta{min-width:104px;padding:6px 12px;font-size:18px;border-radius:10px}.text-zoom{font-size:32px;padding:10px 24px}}
+@media(max-width:1380px){.app-viewport{display:flex;justify-content:center;padding:0;overflow-x:hidden}.app{grid-template-columns:minmax(0,1fr);max-width:min(100vw,var(--game-panel-max));width:min(100vw,var(--game-panel-max));margin:0 auto;justify-content:center;padding:0}.panel,.game-shell{width:100%;max-width:min(100vw,var(--game-panel-max));margin-left:auto;margin-right:auto}.panel:first-child{order:1}.game-shell{order:2;min-height:auto}.panel:last-child{order:3}.game-legend-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.board-wrap{min-height:clamp(420px,76vw,760px);display:flex;justify-content:center;align-items:flex-start}.board{width:min(100%,clamp(380px,90vw,var(--board-max)));transform:scale(1)}.overlay{padding:16px 12px;align-items:flex-start}.overlay-card{width:min(100%,560px);max-width:560px;margin:0 auto;max-height:min(82vh,860px)}.start-overlay-card{width:min(100%,96vw);max-width:1100px;min-height:min(84vh,1180px);max-height:min(96vh,1400px);padding:34px 28px 30px}}
+@media(max-width:680px){body{overflow-x:hidden}.app-viewport{padding:0}.app{width:min(100vw,420px);max-width:min(100vw,420px);grid-template-columns:minmax(0,1fr);gap:12px;padding:0}.panel,.game-shell{max-width:min(100vw,420px);width:100%}.panel-body{overflow:visible}.section-box{width:100%;margin-top:10px}.toolbar{grid-template-columns:repeat(2,1fr)}.game-legend-box{padding:9px 10px}.game-legend-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.legend-item.game-legend-item{height:46px;min-height:0;padding:5px 6px}.legend-item.game-legend-item .mini{width:26px;height:26px;font-size:13px}.legend-item.game-legend-item .legend-name{font-size:10.5px;line-height:1.08}.legend-item.game-legend-item .legend-desc{font-size:8.5px;line-height:1.02}.board-wrap{width:100%;max-width:100%;padding:0;min-height:clamp(300px,84vw,430px);display:flex;justify-content:center;align-items:flex-start;overflow:hidden}.board{width:min(100%,calc(100vw - 30px));max-width:360px;gap:2px;margin:0 auto;transform:scale(.95);transform-origin:top center}.tile{border-radius:12px}.tile .emoji{font-size:18px}.tile .label{font-size:9px;line-height:1.05;letter-spacing:0}.overlay{align-items:flex-start;padding:12px 10px}.overlay-card{width:min(100%,380px);max-width:380px;max-height:min(80vh,760px)}.start-overlay-card{width:min(100%,98vw);max-width:640px;min-height:min(84vh,980px);max-height:min(96vh,1160px);padding:26px 18px 26px}.btn-start-cta{min-width:104px;padding:6px 12px;font-size:18px;border-radius:10px}.text-zoom{font-size:32px;padding:10px 24px}}
 
 .pitch-note{margin-top:10px;padding:10px 12px;border-radius:14px;background:linear-gradient(180deg,#fff7eb,#f8efe2);border:1px dashed rgba(185,119,46,.35);font-size:12px;color:var(--muted);line-height:1.7}
 .pitch-note strong{color:var(--text)}
@@ -261,7 +244,7 @@ button:active{transform:scale(.97)}
 .tile.matching{animation:matchBoom .44s ease-in-out, tileFlash .44s ease-in-out}
 .tile.weapon-blast{animation:blastAnim .56s ease-out forwards, tileFlash .48s ease-in-out}
 .tile .label{font-weight:500 !important;letter-spacing:.1px}
-.overlay-card{animation:overlayFloat .32s ease-out}
+.overlay-card{animation:none}
 .intro-hero-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:10px 0 2px}
 .intro-hero-badges span{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid rgba(185,119,46,.16);font-size:11px;font-weight:800;color:var(--text)}
 .combo-banner{position:fixed;left:50%;top:18%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,#304456,#557084);color:#fff;padding:14px 20px;border-radius:18px;box-shadow:0 18px 36px rgba(48,68,86,.28);font-weight:900;font-size:20px;letter-spacing:.6px;animation:comboBanner .95s ease-out forwards;pointer-events:none}
@@ -303,6 +286,7 @@ button:active{transform:scale(.97)}
 <button class="mini-btn nickname-start-btn" id="saveNicknameBtn">輸入暱稱，開始遊戲</button>
 </div>
 <div class="sub" style="margin-top:6px">排行榜會以這個暱稱記錄你的通關總分，按下按鈕後會跳出開始挑戰畫面。</div>
+<div class="share-status" id="shareStatus" aria-live="polite"></div>
 </div>
 <div class="section-box">
 <h2>📖 操作方式</h2>
@@ -346,7 +330,7 @@ button:active{transform:scale(.97)}
 <div class="weapon-bar">
 <div class="weapon-label"><img class="weapon-bear-mini" id="bearMini" alt="Bear"/> 查證能量</div>
 <div class="weapon-pips" id="weaponPips"><div class="weapon-pip"></div><div class="weapon-pip"></div><div class="weapon-pip"></div><div class="weapon-pip"></div><div class="weapon-pip"></div></div>
-<button class="weapon-btn" id="weaponBtn">💣 查證炸彈</button>
+<div class="weapon-action"><div class="weapon-bomb-icon" aria-hidden="true">💣</div><button class="weapon-btn" id="weaponBtn">查證炸彈</button></div>
 </div>
 <div class="board-wrap">
 <div class="board" id="board"></div>
@@ -519,6 +503,34 @@ const leaderboardListEl=$('leaderboardList'),shareStatusEl=$('shareStatus');
 const NICKNAME_KEY='dazha_nickname_v2';
 const LEADERBOARD_KEY='dazha_final_leaderboard_v2';
 
+let audioCtx=null;
+function ensureAudio(){
+  if(!audioCtx){
+    const Ctx=window.AudioContext||window.webkitAudioContext;
+    if(Ctx) audioCtx=new Ctx();
+  }
+  if(audioCtx&&audioCtx.state==='suspended') audioCtx.resume().catch(()=>{});
+}
+function tone(freq,duration=.08,type='sine',gain=.035,slideTo=null){
+  ensureAudio();
+  if(!audioCtx) return;
+  const osc=audioCtx.createOscillator();
+  const amp=audioCtx.createGain();
+  osc.type=type;
+  osc.frequency.setValueAtTime(freq,audioCtx.currentTime);
+  if(slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo,audioCtx.currentTime+duration);
+  amp.gain.setValueAtTime(.0001,audioCtx.currentTime);
+  amp.gain.exponentialRampToValueAtTime(gain,audioCtx.currentTime+.01);
+  amp.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+duration);
+  osc.connect(amp);amp.connect(audioCtx.destination);
+  osc.start();osc.stop(audioCtx.currentTime+duration+.02);
+}
+function playUiClick(){tone(720,.05,'triangle',.03,520);}
+function playSwapSound(){tone(320,.09,'square',.04,520);setTimeout(()=>tone(600,.06,'triangle',.025,460),36);}
+function playMatchSound(chain=1){const boost=Math.min(chain,4);tone(640+boost*90,.11,'triangle',.045,420+boost*60);setTimeout(()=>tone(880+boost*80,.12,'sine',.03,560+boost*40),70);}
+function playWeaponSound(){tone(220,.16,'sawtooth',.05,120);setTimeout(()=>tone(760,.18,'triangle',.04,300),90);}
+function playStartSound(){tone(420,.08,'triangle',.035,620);setTimeout(()=>tone(620,.1,'triangle',.03,860),90);setTimeout(()=>tone(860,.14,'sine',.03,1080),180);}
+
 function showComboBanner(title,subtitle=''){
   const el=document.createElement('div');
   el.className='combo-banner';
@@ -540,11 +552,37 @@ function showStartPromptBounce(){
 
 function escapeHtml(str){return String(str||'').replace(/[&<>"]/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]));}
 function sanitizeNickname(name){return String(name||'').replace(/[<>\n\r\t]/g,'').trim().slice(0,12)||'Bear學員';}
+
+function formatDisplayDate(timestamp){
+  try{
+    return new Intl.DateTimeFormat('zh-Hant-TW',{year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(timestamp));
+  }catch(e){
+    return new Date(timestamp).toLocaleDateString('zh-Hant-TW');
+  }
+}
+function normalizeLeaderboardEntry(item,index=0){
+  const scoreValue=Number(item?.score||0);
+  const rawTimestamp=item?.timestamp;
+  const parsedFromDate=Date.parse(String(item?.date||'').replace(/\./g,'/'));
+  const safeTimestamp=Number.isFinite(rawTimestamp)?Number(rawTimestamp):Number.isFinite(parsedFromDate)?parsedFromDate:index;
+  return {
+    id:String(item?.id||`${safeTimestamp}_${index}`),
+    name:sanitizeNickname(item?.name||'Bear學員'),
+    score:Number.isFinite(scoreValue)?scoreValue:0,
+    timestamp:safeTimestamp,
+    date:formatDisplayDate(safeTimestamp)
+  };
+}
+function sortLeaderboardData(data){
+  return data.sort((a,b)=>b.score-a.score || a.timestamp-b.timestamp || String(a.id).localeCompare(String(b.id)));
+}
+
 function loadNickname(){
   try{playerNickname=sanitizeNickname(localStorage.getItem(NICKNAME_KEY)||'Bear學員');}catch(e){playerNickname='Bear學員';}
   if(nicknameInputEl)nicknameInputEl.value=playerNickname;
 }
 function saveNickname(silent=false){
+  playUiClick();
   playerNickname=sanitizeNickname(nicknameInputEl?.value||playerNickname);
   try{localStorage.setItem(NICKNAME_KEY,playerNickname);}catch(e){}
   if(nicknameInputEl)nicknameInputEl.value=playerNickname;
@@ -555,24 +593,37 @@ function saveNickname(silent=false){
   }
 }
 function getLeaderboard(){
-  try{const data=JSON.parse(localStorage.getItem(LEADERBOARD_KEY)||'[]');return Array.isArray(data)?data:[];}catch(e){return [];}
+  try{
+    const raw=JSON.parse(localStorage.getItem(LEADERBOARD_KEY)||'[]');
+    const data=(Array.isArray(raw)?raw:[]).map((item,idx)=>normalizeLeaderboardEntry(item,idx));
+    return sortLeaderboardData(data).slice(0,50);
+  }catch(e){
+    return [];
+  }
 }
 function saveLeaderboard(data){
-  try{localStorage.setItem(LEADERBOARD_KEY,JSON.stringify(data));}catch(e){}
+  try{
+    const normalized=(Array.isArray(data)?data:[]).map((item,idx)=>normalizeLeaderboardEntry(item,idx));
+    localStorage.setItem(LEADERBOARD_KEY,JSON.stringify(sortLeaderboardData(normalized).slice(0,50)));
+  }catch(e){}
 }
 function updateLeaderboard(){
   if(!leaderboardListEl)return;
   const data=getLeaderboard();
-  if(!data.length){leaderboardListEl.innerHTML='<div class="sub">目前還沒有通關紀錄，快來挑戰前 10 名！</div>';return;}
+  if(!data.length){
+    leaderboardListEl.innerHTML='<div class="sub">目前還沒有通關紀錄，快來挑戰前 10 名！</div>';
+    return;
+  }
   leaderboardListEl.innerHTML=data.slice(0,10).map((item,idx)=>`<div class="rank-item"><div class="rank-no">${idx+1}</div><div><div class="rank-name">${escapeHtml(item.name)}</div><div class="rank-meta">${escapeHtml(item.date||'')}</div></div><div class="rank-score">${Number(item.score||0).toLocaleString('zh-Hant-TW')}</div></div>`).join('');
 }
 function recordFinalScore(scoreValue){
   const data=getLeaderboard();
-  const entryId=`${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
-  const entry={id:entryId,name:playerNickname,score:Number(scoreValue||0),date:new Date().toLocaleDateString('zh-Hant-TW')};
+  const timestamp=Date.now();
+  const entryId=`${timestamp}_${Math.random().toString(36).slice(2,8)}`;
+  const entry=normalizeLeaderboardEntry({id:entryId,name:playerNickname,score:Number(scoreValue||0),timestamp},data.length);
   data.push(entry);
-  data.sort((a,b)=>b.score-a.score || String(a.date).localeCompare(String(b.date)));
-  saveLeaderboard(data.slice(0,50));
+  sortLeaderboardData(data);
+  saveLeaderboard(data);
   const rank=Math.max(1,data.findIndex(item=>item.id===entryId)+1);
   latestFinalResult={...entry,rank};
   refreshSharePayload();
@@ -595,9 +646,45 @@ function buildShareText(){
 function refreshSharePayload(){latestSharePayload={title:'打詐大作戰',text:buildShareText(),url:getShareUrl()};}
 function setShareStatus(text){if(shareStatusEl)shareStatusEl.textContent=text;}
 function getShareBody(){refreshSharePayload();return latestSharePayload.url?`${latestSharePayload.text}\n${latestSharePayload.url}`:latestSharePayload.text;}
+function fallbackCopyText(text){
+  try{
+    const textarea=document.createElement('textarea');
+    textarea.value=text;
+    textarea.setAttribute('readonly','readonly');
+    textarea.style.position='fixed';
+    textarea.style.opacity='0';
+    textarea.style.left='-9999px';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    const ok=typeof document.execCommand==='function' ? document.execCommand('copy') : false;
+    textarea.remove();
+    return !!ok;
+  }catch(e){
+    return false;
+  }
+}
 async function copyToClipboard(text,okText='已複製分享內容。'){
-  try{await navigator.clipboard.writeText(text);setShareStatus(okText);return true;}
-  catch(e){setShareStatus('目前無法自動複製，請手動複製分享內容。');return false;}
+  try{
+    if(navigator.clipboard?.writeText){
+      await navigator.clipboard.writeText(text);
+      setShareStatus(okText);
+      return true;
+    }
+    if(fallbackCopyText(text)){
+      setShareStatus(okText);
+      return true;
+    }
+    setShareStatus('目前無法自動複製，請手動複製分享內容。');
+    return false;
+  }catch(e){
+    if(fallbackCopyText(text)){
+      setShareStatus(okText);
+      return true;
+    }
+    setShareStatus('目前無法自動複製，請手動複製分享內容。');
+    return false;
+  }
 }
 function ensureFinalResult(){
   if(latestFinalResult)return true;
@@ -609,7 +696,7 @@ async function shareWithSystem(platformLabel){
   refreshSharePayload();
   const payload={title:latestSharePayload.title,text:latestSharePayload.text};
   if(latestSharePayload.url)payload.url=latestSharePayload.url;
-  if(navigator.share){
+  if(typeof navigator.share==='function'){
     try{await navigator.share(payload);setShareStatus(`已開啟${platformLabel}分享視窗。`);return;}
     catch(e){if(e?.name==='AbortError')return;}
   }
@@ -748,7 +835,7 @@ function renderBoard(matches=[]){
   updateHUD();
 }
 
-function onDragStart(e,r,c){if(!started||locked||weaponMode){e.preventDefault();return;}dragFrom={r,c};e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain','');requestAnimationFrame(()=>{const t=getTileAt(r,c);if(t)t.classList.add('dragging');});}
+function onDragStart(e,r,c){if(!started||locked||weaponMode){e.preventDefault();return;}playUiClick();dragFrom={r,c};e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain','');requestAnimationFrame(()=>{const t=getTileAt(r,c);if(t)t.classList.add('dragging');});}
 function onDragOver(e,r,c){e.preventDefault();if(!dragFrom||(dragFrom.r===r&&dragFrom.c===c))return;if(isAdjacent(dragFrom,{r,c})){clearDragOvers();const t=getTileAt(r,c);if(t)t.classList.add('drag-over');}}
 function onDragLeave(e,r,c){const t=getTileAt(r,c);if(t)t.classList.remove('drag-over');}
 function onDrop(e,r,c){e.preventDefault();clearDragOvers();if(!dragFrom||!isAdjacent(dragFrom,{r,c})){dragFrom=null;return;}trySwap(dragFrom,{r,c});dragFrom=null;}
@@ -757,6 +844,7 @@ function clearDragOvers(){document.querySelectorAll('.tile.drag-over,.tile.touch
 
 function onTouchStart(e,r,c){
   if(!started||locked||weaponMode)return;
+  playUiClick();
   touchStartCell={r,c};
   touchStartPos={x:e.touches[0].clientX,y:e.touches[0].clientY};
   touchMoved=false;
@@ -806,6 +894,7 @@ function getTileAt(r,c){return boardEl.querySelector(`[data-r="${r}"][data-c="${
 
 function handleTileClick(r,c){
   if(!started||locked)return;
+  playUiClick();
   if(weaponMode){fireWeapon(r,c);return;}
   if(!selected){selected={r,c};renderBoard();return;}
   if(selected.r===r&&selected.c===c){selected=null;renderBoard();return;}
@@ -814,10 +903,12 @@ function handleTileClick(r,c){
 }
 
 function trySwap(from,to){
+  playSwapSound();
   swap(from,to);const m=findMatches(board);
   if(m.length===0){swap(from,to);addLog('交換無法消除，再試試！');selected=null;renderBoard();}
   else{locked=true;selected=null;resolveBoard(m);}
 }
+
 
 function isAdjacent(a,b){return Math.abs(a.r-b.r)+Math.abs(a.c-b.c)===1;}
 function swap(a,b){[board[a.r][a.c],board[b.r][b.c]]=[board[b.r][b.c],board[a.r][a.c]];}
@@ -850,6 +941,7 @@ async function resolveBoard(initialMatches){
     await wait(480);
 
     const combo=detectCombo(matches);
+    playMatchSound(chain);
     const pts=matches.length*100*chain+combo.bonus;
     score+=pts;cleared+=matches.length;
     weaponCharge=Math.min(weaponCharge+1,WEAPON_CHARGE_NEED);
@@ -881,15 +973,17 @@ function detectCombo(matches){
 
 weaponBtnEl.addEventListener('click',()=>{
   if(!started||locked)return;
-  if(weaponMode){weaponMode=false;weaponBtnEl.classList.remove('active');weaponBtnEl.textContent='💣 查證炸彈';renderBoard();return;}
+  playUiClick();
+  if(weaponMode){weaponMode=false;weaponBtnEl.classList.remove('active');weaponBtnEl.textContent='查證炸彈';renderBoard();return;}
   if(!weaponReady)return;
   weaponMode=true;weaponBtnEl.classList.add('active');weaponBtnEl.textContent='🎯 選擇目標';renderBoard();
   addLog('🎯 Bear已鎖定查證炸彈，點擊目標立即搜查爆破！','weapon');
 });
 
 async function fireWeapon(r,c){
+  playWeaponSound();
   weaponMode=false;weaponReady=false;weaponCharge=0;
-  weaponBtnEl.classList.remove('active','ready');weaponBtnEl.textContent='💣 查證炸彈';
+  weaponBtnEl.classList.remove('active','ready');weaponBtnEl.textContent='查證炸彈';
   locked=true;
   const tile=getTileAt(r,c);
   if(tile){const rect=tile.getBoundingClientRect();showBlastRing(rect.left+rect.width/2,rect.top+rect.height/2);}
@@ -934,6 +1028,7 @@ function updateHUD(){
 function addLog(text,type){const it=document.createElement('div');it.className='log-item'+(type==='combo'?' combo-log':type==='weapon'?' weapon-log':'');it.textContent=text;logListEl.prepend(it);while(logListEl.childNodes.length>8)logListEl.removeChild(logListEl.lastChild);}
 
 function startGame(){
+  playStartSound();
   started=true;overlayEl.classList.remove('show');document.body.classList.remove('overlay-open');
   if(timerId)clearInterval(timerId);
   timerId=setInterval(()=>{timeLeft--;updateHUD();if(timeLeft<=0){clearInterval(timerId);checkGameEnd(true);}},1000);
@@ -957,6 +1052,23 @@ function resetCampaign(){
   setShareStatus('完成五關後，可分享你的排名、分數與遊戲連結，適合活動推廣與社群擴散。');
 }
 
+function exitGame(){
+  if(timerId)clearInterval(timerId);
+  started=false;
+  selected=null;
+  locked=false;
+  weaponCharge=0;
+  weaponReady=false;
+  weaponMode=false;
+  resetCampaign();
+  startPromptUnlocked=false;
+  overlayEl.classList.remove('show','bounce-show');
+  document.body.classList.remove('overlay-open');
+  startLevel(0);
+  setShareStatus('已離開遊戲，可重新輸入暱稱後再開始挑戰。');
+  document.querySelector('.app')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
 function showLevelComplete(){
   const lvl=getLvl();
   const stars=timeLeft>60?'⭐⭐⭐':timeLeft>30?'⭐⭐':'⭐';
@@ -975,12 +1087,14 @@ function showLevelComplete(){
       <div class="btn-row">
         ${isLast?`<button class="btn-primary" id="finalBtn">🏆 查看總成績</button>`:`<button class="btn-next" id="nextBtn">▶ 下一關：${LEVELS[currentLevel+1].name}</button>`}
         <button class="btn-secondary" id="replayBtn">🔄 重玩本關</button>
+        <button class="btn-danger" id="exitGameBtn">🚪 離開遊戲</button>
       </div>
     </div>`;
   overlayEl.classList.add('show');
   if(!isLast)document.getElementById('nextBtn')?.addEventListener('click',nextLevel);
   else document.getElementById('finalBtn')?.addEventListener('click',showFinalScore);
   document.getElementById('replayBtn')?.addEventListener('click',()=>startLevel(currentLevel));
+  document.getElementById('exitGameBtn')?.addEventListener('click',exitGame);
 }
 
 function showLevelFail(){
@@ -995,11 +1109,13 @@ function showLevelFail(){
       <div class="btn-row">
         <button class="btn-primary" id="retryBtn">🔄 再試一次</button>
         <button class="btn-secondary" id="resetAllBtn">回到第一關</button>
+        <button class="btn-danger" id="exitGameBtn">🚪 離開遊戲</button>
       </div>
     </div>`;
   overlayEl.classList.add('show');
   document.getElementById('retryBtn')?.addEventListener('click',()=>startLevel(currentLevel));
   document.getElementById('resetAllBtn')?.addEventListener('click',()=>{resetCampaign();startPromptUnlocked=false;startLevel(0);});
+  document.getElementById('exitGameBtn')?.addEventListener('click',exitGame);
 }
 
 function showFinalScore(){
@@ -1016,10 +1132,14 @@ function showFinalScore(){
       <p style="margin-top:8px">恭喜完成五大詐騙主題關卡！<br>假投資、假交友、網購詐騙、假公務機關、假求職。</p>
       <p style="margin-top:6px;color:var(--accent);font-weight:700">Bear提醒您：遇到可疑狀況，先查證、撥165！</p>
       ${renderFinalShareButtons()}
-      <div class="btn-row"><button class="btn-primary" id="restartAllBtn">🔄 從頭挑戰</button></div>
+      <div class="btn-row">
+        <button class="btn-primary" id="restartAllBtn">🔄 從頭挑戰</button>
+        <button class="btn-danger" id="exitGameBtn">🚪 離開遊戲</button>
+      </div>
     </div>`;
   overlayEl.classList.add('show');
   document.getElementById('restartAllBtn')?.addEventListener('click',()=>{resetCampaign();startPromptUnlocked=false;startLevel(0);});
+  document.getElementById('exitGameBtn')?.addEventListener('click',exitGame);
 }
 
 function nextLevel(){showLevelTransition();currentLevel++;startLevel(currentLevel);}
@@ -1033,7 +1153,7 @@ function startLevel(idx){
   if(timerId)clearInterval(timerId);
   logListEl.innerHTML='';
   liveTipEl.textContent='先停看聽、再查證，跟著刑事Bear冷靜拆解詐騙話術。';
-  weaponBtnEl.classList.remove('active','ready');weaponBtnEl.textContent='💣 查證炸彈';
+  weaponBtnEl.classList.remove('active','ready');weaponBtnEl.textContent='查證炸彈';
   renderLevelBar();initLegend();updateCaseBox();createBoard();
 
   const lvl=getLvl();
@@ -1067,7 +1187,6 @@ function startLevel(idx){
   updateHUD();
 }
 
-$('resetBtn')?.addEventListener('click',()=>startLevel(currentLevel));
 saveNicknameBtnEl?.addEventListener('click',()=>saveNickname());
 nicknameInputEl?.addEventListener('keydown',e=>{if(e.key==='Enter')saveNickname();});
 function wait(ms){return new Promise(r=>setTimeout(r,ms));}
@@ -1117,17 +1236,26 @@ function syncMobilePanelLayout(){
     overlayCard.style.maxHeight=`${overlayHeight}px`;
   }
 }
-window.addEventListener('resize',()=>{fitAppToViewport();syncMobilePanelLayout();});
-window.addEventListener('orientationchange',()=>{fitAppToViewport();syncMobilePanelLayout();});
-new ResizeObserver(()=>{fitAppToViewport();syncMobilePanelLayout();}).observe(appRootEl);
+function handleResponsiveLayout(){
+  fitAppToViewport();
+  syncMobilePanelLayout();
+}
+window.addEventListener('resize',handleResponsiveLayout);
+window.addEventListener('orientationchange',handleResponsiveLayout);
+if(typeof ResizeObserver==='function' && appRootEl){
+  const resizeObserver=new ResizeObserver(handleResponsiveLayout);
+  resizeObserver.observe(appRootEl);
+}
+window.addEventListener('load',handleResponsiveLayout);
 
 loadNickname();
+saveLeaderboard(getLeaderboard());
 updateLeaderboard();
 refreshSharePayload();
 setShareStatus('請先輸入暱稱，開始遊戲；按下後會跳出滿版開始挑戰畫面。');
 setBearImages();
 startLevel(0);
-requestAnimationFrame(()=>{fitAppToViewport();syncMobilePanelLayout();});
+requestAnimationFrame(handleResponsiveLayout);
 </script>
 </body>
 </html>
